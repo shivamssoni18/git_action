@@ -41,10 +41,10 @@ jobs:
       if: github.ref == 'refs/heads/master'
     # Sign APK
     - name: Sign APK
+      id: sign
       uses: r0adkll/sign-android-release@v1
-      id: sign_app
       with:
-        releaseDirectory: app/build/outputs/apk/release
+        releaseDirectory: app\build\outputs\apk\**\release
         signingKeyBase64: ${{ secrets.SIGNING_KEY }}
         alias: ${{ secrets.ALIAS }}
         keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
