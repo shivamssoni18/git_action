@@ -5,6 +5,7 @@ apply plugin: 'kotlin-android-extensions'
 android {
     compileSdkVersion 29
     buildToolsVersion "30.0.2"
+    flavorDimensions "deafult"
 
     defaultConfig {
         applicationId "com.example.git_action"
@@ -20,6 +21,15 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    productFlavors {
+        dev {
+            applicationIdSuffix ".dev"
+        }
+        prod {
+            applicationIdSuffix ".prod"
         }
     }
 }
