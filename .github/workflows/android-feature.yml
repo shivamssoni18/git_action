@@ -36,11 +36,12 @@ jobs:
       run: ./gradlew assembleDevRelease
       if: github.ref == 'refs/heads/dev'
       # Sign Prod APK
-    - name: Sign APK
-      id: signDebug
+    - name: Sign APK Dev
+      id: signDev
+      if: github.ref == 'refs/heads/dev'
       uses: r0adkll/sign-android-release@v1
       with:
-          releaseDirectory: app/build/outputs/apk/devRelease
+          releaseDirectory: app/build/outputs/apk/dev/release
           signingKeyBase64: ${{ secrets.SIGNING_KEY }}
           alias: ${{ secrets.ALIAS }}
           keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
@@ -50,11 +51,12 @@ jobs:
       run: ./gradlew assembleProdRelease
       if: github.ref == 'refs/heads/master'
     # Sign Prod APK
-    - name: Sign APK
+    - name: Sign APK Prod
       id: signProd
+      if: github.ref == 'refs/heads/master'
       uses: r0adkll/sign-android-release@v1
       with:
-        releaseDirectory: app/build/outputs/apk/prodRelease
+        releaseDirectory: app/build/outputs/apk/prod/release
         signingKeyBase64: ${{ secrets.SIGNING_KEY }}
         alias: ${{ secrets.ALIAS }}
         keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
