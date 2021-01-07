@@ -37,7 +37,7 @@ jobs:
       if: github.ref == 'refs/heads/dev'
       # Sign Prod APK
     - name: Sign APK
-      id: sign debug
+      id: signDebug
       uses: r0adkll/sign-android-release@v1
       with:
           releaseDirectory: app/build/outputs/apk/dev/release
@@ -51,7 +51,7 @@ jobs:
       if: github.ref == 'refs/heads/master'
     # Sign Prod APK
     - name: Sign APK
-      id: sign prod
+      id: signProd
       uses: r0adkll/sign-android-release@v1
       with:
         releaseDirectory: app/build/outputs/apk/prod/release
