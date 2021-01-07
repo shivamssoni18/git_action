@@ -35,16 +35,26 @@ jobs:
     - name: Generate Dev APK
       run: ./gradlew assembleDevRelease
       if: github.ref == 'refs/heads/dev'
+      # Sign Prod APK
+    - name: Sign APK
+      id: sign debug
+      uses: r0adkll/sign-android-release@v1
+      with:
+          releaseDirectory: app/build/outputs/apk/dev/release
+          signingKeyBase64: ${{ secrets.SIGNING_KEY }}
+          alias: ${{ secrets.ALIAS }}
+          keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
+          keyPassword: ${{ secrets.KEY_PASSWORD }}
     # Generate Production APK
     - name: Generate Production APK
       run: ./gradlew assembleProdRelease
       if: github.ref == 'refs/heads/master'
-    # Sign APK
+    # Sign Prod APK
     - name: Sign APK
-      id: sign
+      id: sign prod
       uses: r0adkll/sign-android-release@v1
       with:
-        releaseDirectory: app\build\outputs\apk\**\release
+        releaseDirectory: app/build/outputs/apk/prod/release
         signingKeyBase64: ${{ secrets.SIGNING_KEY }}
         alias: ${{ secrets.ALIAS }}
         keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
@@ -53,5 +63,6 @@ jobs:
     - name: Artifact the APK
       uses: actions/upload-artifact@v2
       with:
-        name: my-artifact
-        path: ${{steps.sign_app.outputs.signedReleaseFile}}
+        name: android-app
+        path: |
+          **/*.apk
