@@ -41,7 +41,7 @@ jobs:
       if: github.ref == 'refs/heads/dev'
       uses: r0adkll/sign-android-release@v1
       with:
-          releaseDirectory: app/build/outputs/apk/devRelease
+          releaseDirectory: app/build/outputs/apk/dev/release
           signingKeyBase64: ${{ secrets.SIGNING_KEY }}
           alias: ${{ secrets.ALIAS }}
           keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
@@ -56,7 +56,7 @@ jobs:
       if: github.ref == 'refs/heads/master'
       uses: r0adkll/sign-android-release@v1
       with:
-        releaseDirectory: app/build/outputs/apk/prodRelease
+        releaseDirectory: app/build/outputs/apk/prod/release
         signingKeyBase64: ${{ secrets.SIGNING_KEY }}
         alias: ${{ secrets.ALIAS }}
         keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
