@@ -40,7 +40,7 @@ jobs:
       id: signDebug
       uses: r0adkll/sign-android-release@v1
       with:
-          releaseDirectory: app/build/outputs/apk/dev/release
+          releaseDirectory: app/build/outputs/apk/devRelease
           signingKeyBase64: ${{ secrets.SIGNING_KEY }}
           alias: ${{ secrets.ALIAS }}
           keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
@@ -54,7 +54,7 @@ jobs:
       id: signProd
       uses: r0adkll/sign-android-release@v1
       with:
-        releaseDirectory: app/build/outputs/apk/prod/release
+        releaseDirectory: app/build/outputs/apk/prodRelease
         signingKeyBase64: ${{ secrets.SIGNING_KEY }}
         alias: ${{ secrets.ALIAS }}
         keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
