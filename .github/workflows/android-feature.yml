@@ -36,8 +36,9 @@ jobs:
       run: ./gradlew assembleDevRelease
       if: github.ref == 'refs/heads/dev'
       # Sign Prod APK
-    - name: Sign APK
-      id: signDebug
+    - name: Sign APK Dev
+      id: signDev
+      if: github.ref == 'refs/heads/dev'
       uses: r0adkll/sign-android-release@v1
       with:
           releaseDirectory: app/build/outputs/apk/devRelease
@@ -50,8 +51,9 @@ jobs:
       run: ./gradlew assembleProdRelease
       if: github.ref == 'refs/heads/master'
     # Sign Prod APK
-    - name: Sign APK
+    - name: Sign APK Prod
       id: signProd
+      if: github.ref == 'refs/heads/master'
       uses: r0adkll/sign-android-release@v1
       with:
         releaseDirectory: app/build/outputs/apk/prodRelease
