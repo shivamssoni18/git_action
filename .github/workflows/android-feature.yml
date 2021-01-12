@@ -12,6 +12,7 @@ jobs:
     env:
       GIT_ACTION_KEYSTORE_PATH: ${{secrets.KEYSTOREPATH}}
       GIT_ACTION_KEY_STORE_PASSWORD: ${{secrets.KEY_STORE_PASSWORD}}
+      GIT_ACTION_KEY_PASSWORD: ${{secrets.KEY_STORE_PASSWORD}}
       GIT_ACTION_ALIAS: ${{secrets.ALIAS}}
       TESTFAIRY_API_KEY: ${{secrets.TESTFAIRY_API_KEY}}
 
