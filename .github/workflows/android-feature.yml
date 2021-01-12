@@ -10,9 +10,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      KEYSTOREPATH: ${{secrets.KEYSTOREPATH}}
-      KEYSTORE_PASSWORD: ${{secrets.KEY_STORE_PASSWORD}}
-      KEYSTORE_ALIAS: ${{secrets.ALIAS}}
+      GIT_ACTION_KEYSTORE_PATH: ${{secrets.KEYSTOREPATH}}
+      GIT_ACTION_KEY_STORE_PASSWORD: ${{secrets.KEY_STORE_PASSWORD}}
+      GIT_ACTION_ALIAS: ${{secrets.ALIAS}}
       TESTFAIRY_API_KEY: ${{secrets.TESTFAIRY_API_KEY}}
 
     steps:
